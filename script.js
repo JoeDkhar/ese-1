@@ -1,17 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const catImage = document.getElementById('cat-image');
     const fetchCatButton = document.getElementById('fetch-cat');
-    const signupForm = document.getElementById('signup-form');
+   
 
     fetchCatButton.addEventListener('click', fetchCatImage);
-
-    signupForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (validateForm()) {
-            alert('Sign up successful!');
-        }
-    });
-
     function fetchCatImage() {
         fetch('https://api.thecatapi.com/v1/images/search')
             .then(response => response.json())
@@ -20,6 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error fetching cat image:', error));
     }
+});
+
+//q2
+
+document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form');
+
+    signupForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (validateForm()) {
+            alert('Sign up successful!');
+        }
+    });
 
     function validateForm() {
         const name = document.getElementById('name').value;
