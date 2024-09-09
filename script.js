@@ -40,3 +40,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 });
+
+// q3
+
+document.addEventListener('DOMContentLoaded', () => {
+    const catDetailsContainer = document.getElementById('cat-details');
+
+    fetch('https://joedkhar.github.io/ese-1/q3.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(cat => {
+                const catCard = document.createElement('div');
+                catCard.className = 'cat-card';
+
+                catCard.innerHTML = `
+                    <img src="${cat.url}" alt="${cat.name}">
+                    <h2>${cat.name}</h2>
+                    <p><strong>Temperament:</strong> ${cat.temperament}</p>
+                    <p><strong>Origin:</strong> ${cat.origin}</p>
+                    <p><strong>Description:</strong> ${cat.description}</p>
+                    <p><strong>Life Span:</strong> ${cat.life_span} years</p>
+                `;
+
+                catDetailsContainer.appendChild(catCard);
+            });
+        })
+        .catch(error => console.error('Error fetching cat details:', error));
+});
